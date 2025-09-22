@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Copy Command</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #0f0;
+      font-size: 24px;
+    }
+    #msg {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    #msg.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="msg">Copied!</div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const uuid = urlParams.get("uuid") || "UNKNOWN";
+    const command = "/viewauction " + uuid;
+
+    navigator.clipboard.writeText(command).then(() => {
+      const msg = document.getElementById("msg");
+      msg.classList.add("show");
+
+      setTimeout(() => {
+        window.close();
+      }, 2000);
+    }).catch(err => {
+      document.body.innerText = "Failed to copy. Please copy manually: " + command;
+    });
+  </script>
+</body>
+</html>

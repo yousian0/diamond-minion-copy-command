@@ -16,7 +16,7 @@
     }
     #msg {
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.1s ease;
     }
     #msg.show {
       opacity: 1;
@@ -37,7 +37,7 @@
 
       setTimeout(() => {
         window.close();
-      }, 0);
+      }, 100);
     }).catch(err => {
       document.body.innerText = "Failed to copy. Please copy manually: " + command;
     });
